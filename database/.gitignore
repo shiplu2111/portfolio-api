@@ -1,0 +1,49 @@
+*.sqlite*
+# Laravel core files to ignore
+/vendor
+/node_modules
+
+# Laravel environment
+.env
+.env.backup
+.env.*.php
+
+# Laravel cache & logs
+/storage/*.key
+/storage/app/public
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/storage/logs
+
+# Laravel test results
+.phpunit.result.cache
+
+# Laravel Mix or Vite
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/public/build
+/build
+
+# IDEs and editors
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Composer artifacts
+composer.lock
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+
+# Git merge/resolution files
+*.orig
+
+# Laravel Telescope (if used)
+storage/telescope
