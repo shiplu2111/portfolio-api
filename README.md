@@ -3,12 +3,19 @@
 This is a portfolio api with laravel and filament php 
 
 ## Installation
-
+Start by cloning the repo
+## Cloning the repo
 ```bash
 git clone https://github.com/shiplu2111/portfolio-api.git
 
+Change directory to portfolio-api
+
+## Change directory
 ```bash
 cd portfolio-api
+
+
+## Install dependencies
 
 ```bash
 composer install
