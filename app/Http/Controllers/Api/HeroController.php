@@ -14,8 +14,8 @@ class HeroController extends Controller
     public function index()
     {
         $data = Hero::latest()->first();
-        $data->image = asset('public/storage/' . ltrim($data->image, '/'));
-        $data->resume = asset('public/storage/' . ltrim($data->resume, '/'));
+        $data->image = asset('storage/' . ltrim($data->image, '/'));
+        $data->resume = asset('storage/' . ltrim($data->resume, '/'));
         return response()->json($data);
     }
 
