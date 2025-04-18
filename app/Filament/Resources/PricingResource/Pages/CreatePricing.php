@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\TestimonialResource\Pages;
+namespace App\Filament\Resources\PricingResource\Pages;
 
-use App\Filament\Resources\TestimonialResource;
+use App\Filament\Resources\PricingResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Notifications\Notification;
-class CreateTestimonial extends CreateRecord
+class CreatePricing extends CreateRecord
 {
-    protected static string $resource = TestimonialResource::class;
+    protected static string $resource = PricingResource::class;
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
@@ -16,8 +16,8 @@ class CreateTestimonial extends CreateRecord
     protected function afterCreate(): void
     {
         Notification::make()
-            ->title('Testimonial  Created')
-            ->body('The Testimonial  has been successfully added.')
+            ->title('Pricing Package  Created')
+            ->body('The Pricing Package  has been successfully added.')
             ->success()
             ->send();
     }

@@ -19,7 +19,7 @@ use Filament\Forms\Components\Hidden;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
-
+use App\Models\Project;
 class ProjectCategoryResource extends Resource
 {
     protected static ?string $model = ProjectCategory::class;
@@ -63,11 +63,27 @@ class ProjectCategoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()->successNotification(null) // Disable default success notification
+
+                Tables\Actions\DeleteAction::make()
+                ->successNotification(null)
+                ->before(function ($record, $action) {
+                    $isProduct = Project::where('category_id', $record->id)->first();
+                    if ($isProduct) {
+                        Notification::make()
+                            ->title('Deletion Blocked')
+                            ->body('This project cannot be deleted because it is linked to an existing project.')
+                            ->icon('heroicon-s-x-circle')
+                            ->danger()
+                            ->send();
+
+                        // Properly cancel the action
+                        $action->cancel();
+                    }
+                })
                 ->after(function ($record) {
                     Notification::make()
-                        ->title('Project Category Deleted')
-                        ->body('The Project Category has been successfully deleted.')
+                        ->title('Project Deleted')
+                        ->body('The project was successfully deleted.')
                         ->icon('heroicon-s-trash')
                         ->success()
                         ->send();

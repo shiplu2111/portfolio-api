@@ -18,12 +18,16 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Hidden;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\Textarea;
+use Michaeld555\FilamentCroppie\Components\Croppie;
+use Filament\Notifications\Notification;
 class TestimonialResource extends Resource
 {
     protected static ?string $model = Testimonial::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationLabel = 'Testimonials';
+    protected static ?int $navigationSort = 6;
+    protected static ?string $navigationGroup = 'Projects';
     public static function form(Form $form): Form
     {
         return $form
@@ -52,32 +56,54 @@ class TestimonialResource extends Resource
                 ->label('Testimonial')
                 ->required(),
 
-                FileUpload::make('image')
-                ->directory('about')
-                ->imageResizeMode('cover')
-                ->imageEditor()
-                ->label('Main Image')
-                ->required(),
-            ]);
+                // FileUpload::make('image')
+                // ->directory('about')
+                // ->imageResizeMode('cover')
+                // ->imageEditor()
+                // ->label('Main Image')
+                // ->required(),
+
+                Croppie::make('image')
+                ->avatar()
+                ->label('Testimonial Image') // Field label
+                ->disk('public') // Storage disk
+                ->directory('testimonials') // Storage directory
+                ->required()
+                ->imageFormat('webp')
+                ->imageResizeMode('cover'),
 
             // $table->string('name');
             // $table->string('image');
             // $table->string('company');
             // $table->string('designation');
             // $table->text('testimonial');
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('designation'),
+                Tables\Columns\TextColumn::make('company'),
+                ImageColumn::make('image')->circular(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make() ->successNotification(null) // Disable default success notification
+                ->after(function ($record) {
+                    Notification::make()
+                        ->title('Testimonial  Deleted')
+                        ->body('The Testimonial has been successfully deleted.')
+                        ->icon('heroicon-s-trash')
+                        ->success()
+                        ->send();
+                }),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\TestimonialResource\Pages;
+namespace App\Filament\Resources\PricingResource\Pages;
 
-use App\Filament\Resources\TestimonialResource;
+use App\Filament\Resources\PricingResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Notifications\Notification;
-class EditTestimonial extends EditRecord
+class EditPricing extends EditRecord
 {
-    protected static string $resource = TestimonialResource::class;
+    protected static string $resource = PricingResource::class;
 
     protected function getRedirectUrl(): string
     {
@@ -16,7 +16,7 @@ class EditTestimonial extends EditRecord
         ->title('Updated successfully')
         ->success()
         ->icon('heroicon-s-check-circle')
-        ->body('Testimonial has been successfully updated.')
+        ->body('Pricing Package has been successfully updated.')
         ->send();
         return $this->getResource()::getUrl('index');
 
@@ -27,8 +27,8 @@ class EditTestimonial extends EditRecord
             Actions\DeleteAction::make()->successNotification(null) // Disable default success notification
             ->after(function ($record) {
                 Notification::make()
-                    ->title('Testimonial Deleted')
-                    ->body('The Testimonial has been successfully deleted.')
+                    ->title('Pricing Package Deleted')
+                    ->body('The Pricing Package has been successfully deleted.')
                     ->icon('heroicon-s-trash')
                     ->success()
                     ->send();
