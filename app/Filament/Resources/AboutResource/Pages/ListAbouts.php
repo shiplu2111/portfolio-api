@@ -6,6 +6,7 @@ use App\Filament\Resources\AboutResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use App\Models\About;
+use Filament\Notifications\Notification;
 class ListAbouts extends ListRecords
 {
     protected static string $resource = AboutResource::class;

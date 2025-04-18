@@ -19,6 +19,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Hidden;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\Textarea;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 class AboutResource extends Resource
 {
     protected static ?string $model = About::class;
@@ -57,29 +58,49 @@ class AboutResource extends Resource
                 ->required()
                 ->columnSpan('full'),
 
-                FileUpload::make('image')
-                ->directory('about')
-                ->imageResizeMode('cover')
-                ->imageEditor()
-                ->label('Main Image')
-                ->required(),
-                FileUpload::make('testimonial_image')
-                ->directory('testimonial_image')
-                ->imageResizeMode('cover')
-                ->imageEditor()
-                ->required(),
 
-                FileUpload::make('designation_image')
-                ->directory('designation_image')
-                ->imageResizeMode('cover')
-                ->imageEditor()
-                ->required(),
+
+                Croppie::make('image')
+                ->label('Main Image')
+                ->viewportType('square')
+                ->viewportHeight(410)
+                ->viewportWidth(340)
+                ->columnSpan('full')
+                // ->enableZoom(false)
+                ->imageFormat('webp')->directory('about'),
+
+
+                // FileUpload::make('testimonial_image')
+                // ->directory('testimonial_image')
+                // ->imageResizeMode('cover')
+                // ->imageEditor()
+                // ->required(),
+
+                Croppie::make('testimonial_image')
+                ->avatar()
+                ->label('Testimonial Image') // Field label
+                ->disk('public') // Storage disk
+                ->directory('testimonial_image') // Storage directory
+                ->required()
+                ->imageFormat('webp')
+                ->imageResizeMode('cover'),
+
                 // FileUpload::make('designation_image')
                 // ->directory('designation_image')
                 // ->imageResizeMode('cover')
-                // ->label('Reviewer Image')
                 // ->imageEditor()
                 // ->required(),
+
+                Croppie::make('designation_image')
+                ->avatar()
+                ->label('Designation Image') // Field label
+                ->disk('public') // Storage disk
+                ->directory('designation_image') // Storage directory
+                ->required()
+                ->imageFormat('webp')
+                ->imageResizeMode('cover'),
+
+
                 Repeater::make('services')
                 ->schema([
                     Hidden::make('id')

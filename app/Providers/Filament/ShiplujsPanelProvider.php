@@ -20,6 +20,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Filament\Navigation\MenuItem;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
+use Firefly\FilamentBlog\Blog;
 class ShiplujsPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -68,7 +69,8 @@ class ShiplujsPanelProvider extends PanelProvider
                 ->setSort(10)
                 ->shouldRegisterNavigation(true)
                 ->shouldShowDeleteAccountForm(false)
-                ->shouldShowBrowserSessionsForm()
+                ->shouldShowBrowserSessionsForm(),
+                Blog::make()
 
             ])
             ->userMenuItems([
