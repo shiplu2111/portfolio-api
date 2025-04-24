@@ -18,6 +18,8 @@ class User extends Authenticatable implements FilamentUser
         // return str_ends_with($this->email, '@yourdomain.com');
         return str_ends_with($this->email, '@shiplujs.com');
     }
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -51,6 +53,6 @@ class User extends Authenticatable implements FilamentUser
     public function canComment(): bool
     {
         // your conditional logic here
-        return true;
+        return false;
     }
 }

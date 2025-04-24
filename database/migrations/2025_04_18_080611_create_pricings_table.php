@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('pricings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('sub_title');
-            $table->string('price');
-            $table->string('currency_symbol');
-            $table->string('duration');
-            $table->string('description');
+            $table->string('sub_title')->nullable();
+            $table->string('price')->nullable();
+            $table->string('currency_symbol')->nullable();
+            $table->string('duration')->nullable();
+            $table->string('description')->nullable();
             $table->text('service_include')->nullable();
             $table->text('service_not_include')->nullable();
             $table->timestamps();

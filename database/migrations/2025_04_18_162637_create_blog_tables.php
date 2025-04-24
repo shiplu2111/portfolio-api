@@ -64,7 +64,7 @@ return new class () extends Migration {
 
         Schema::create(config('filamentblog.tables.prefix').'comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(config('filamentblog.user.foreign_key'));
+            $table->foreignId(config('filamentblog.user.foreign_key'))->nullable();
             $table->foreignId("post_id")
                 ->constrained(table: config('filamentblog.tables.prefix').'posts')
                 ->cascadeOnDelete();
