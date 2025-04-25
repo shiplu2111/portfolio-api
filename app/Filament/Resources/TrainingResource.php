@@ -12,18 +12,63 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\Hidden;
+use Illuminate\Support\Str;
+use Filament\Forms\Components\Textarea;
+use Michaeld555\FilamentCroppie\Components\Croppie;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\RichEditor;
 class TrainingResource extends Resource
 {
     protected static ?string $model = Training::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationLabel = 'Trainings';
+    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationGroup = 'Resume';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                TextInput::make('title')
+                ->label('Title')
+                ->placeholder('E.g. Web Development')
+                ->columnSpan('full')
+                ->required(),
+                TextInput::make('institute')
+                ->label('Institute')
+                ->placeholder('E.g. BITM')
+                ->columnSpan('full')
+                ->required(),
+
+
+
+                TextInput::make('website_url')
+                ->label('Website URL')
+                ->placeholder('E.g. https://sara-inovations.com')
+                ->columnSpan('full')
+                ->required(),
+
+
+
+                TextInput::make('start_date')
+                ->label('Start Date')
+                ->placeholder('E.g. Jan 2022')
+                // ->columnSpan('full')
+                ->required(),
+
+                TextInput::make('end_date')
+                ->label('End Date')
+                ->placeholder('E.g. Jan 2026 or Present')
+                // ->columnSpan('full')
+                ->required(),
+                RichEditor::make('description')
+                ->label('Description')
+                ->required()
+                ->columnSpan('full'),
             ]);
     }
 
@@ -31,13 +76,27 @@ class TrainingResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')->label('Title'),
+                Tables\Columns\TextColumn::make('institute')->label('Institute'),
+                Tables\Columns\TextColumn::make('start_date')->label('Start Date'),
+                Tables\Columns\TextColumn::make('end_date')->label('End Date'),
+
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make() ->successNotification(null) // Disable default success notification
+                ->after(function ($record) {
+                    Notification::make()
+                        ->title('Training Deleted')
+                        ->body('The Training has been successfully deleted.')
+                        ->icon('heroicon-s-trash')
+                        ->success()
+                        ->send();
+                }),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

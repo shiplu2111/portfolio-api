@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('end_date')->nullable();
             $table->string('website_url')->nullable();
             $table->text('description')->nullable();
+            $table->text('address')->nullable();
 
             $table->timestamps();
         });

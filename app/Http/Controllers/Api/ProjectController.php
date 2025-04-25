@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\DB;
 class ProjectController extends Controller
 {
@@ -43,17 +44,34 @@ class ProjectController extends Controller
         /**
          * Store a newly created resource in storage.
          */
-        public function store(Request $request)
+        public function projectCategories()
         {
-            //
+            $data = ProjectCategory::all();
+
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Project Category fetched successfully',
+                'data' => $data,
+            ]);
         }
 
         /**
          * Display the specified resource.
          */
-        public function show(string $id)
+        public function testimonials()
         {
-            //
+            $data = Testimonial::all();
+            foreach ($data as $item) {
+                if ($item->image !== null) {
+                    $item->image = asset('storage/' . ltrim($item->image, '/'));
+                }
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Testimonials fetched successfully',
+                'data' => $data,
+            ]);
         }
 
         /**

@@ -24,7 +24,7 @@ class TestimonialResource extends Resource
 {
     protected static ?string $model = Testimonial::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-pencil';
     protected static ?string $navigationLabel = 'Testimonials';
     protected static ?int $navigationSort = 6;
     protected static ?string $navigationGroup = 'Projects';

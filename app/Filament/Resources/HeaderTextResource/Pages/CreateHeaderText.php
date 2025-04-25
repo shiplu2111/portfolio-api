@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\ClientResource\Pages;
+namespace App\Filament\Resources\HeaderTextResource\Pages;
 
-use App\Filament\Resources\ClientResource;
+use App\Filament\Resources\HeaderTextResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Notifications\Notification;
-class CreateClient extends CreateRecord
+class CreateHeaderText extends CreateRecord
 {
-    protected static string $resource = ClientResource::class;
+    protected static string $resource = HeaderTextResource::class;
+
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
@@ -16,8 +17,8 @@ class CreateClient extends CreateRecord
     protected function afterCreate(): void
     {
         Notification::make()
-            ->title('Client Created')
-            ->body('The Client has been successfully added.')
+            ->title('Text  Created')
+            ->body('The Header Text has been successfully added.')
             ->success()
             ->send();
     }

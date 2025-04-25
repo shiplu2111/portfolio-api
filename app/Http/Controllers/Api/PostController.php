@@ -32,6 +32,27 @@ class PostController extends Controller
          );
     }
 
+    public function categories(){
+        $categories = Category::all();
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Categories fetched successfully',
+                'data' => $categories
+            ]
+        );
+    }
+     public function tags(){
+        $tags = Tag::all();
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Tags fetched successfully',
+                'data' => $tags
+            ]
+        );
+    }
+
 
     public function search(Request $request)
     {
@@ -45,6 +66,7 @@ class PostController extends Controller
             ->published()
             ->whereAny(['title', 'sub_title'], 'like', '%'.$request->get('query').'%')
             ->paginate(10)->withQueryString();
+
 
         return response()->json(
             [

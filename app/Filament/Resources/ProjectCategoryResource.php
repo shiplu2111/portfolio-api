@@ -24,7 +24,7 @@ class ProjectCategoryResource extends Resource
 {
     protected static ?string $model = ProjectCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-c-bars-arrow-down';
     protected static ?string $navigationLabel = 'Categories';
     protected static ?int $navigationSort = 3;
     protected static ?string $navigationGroup = 'Projects';

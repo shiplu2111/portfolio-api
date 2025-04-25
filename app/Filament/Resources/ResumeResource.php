@@ -22,8 +22,8 @@ class ResumeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationLabel = 'Resumes';
-    protected static ?int $navigationSort = 5;
-    protected static ?string $navigationGroup = 'Home Page';
+    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationGroup = 'Resume';
 
     public static function form(Form $form): Form
     {

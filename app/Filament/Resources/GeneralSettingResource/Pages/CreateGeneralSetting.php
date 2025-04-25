@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\ClientResource\Pages;
+namespace App\Filament\Resources\GeneralSettingResource\Pages;
 
-use App\Filament\Resources\ClientResource;
+use App\Filament\Resources\GeneralSettingResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Notifications\Notification;
-class CreateClient extends CreateRecord
+class CreateGeneralSetting extends CreateRecord
 {
-    protected static string $resource = ClientResource::class;
+    protected static string $resource = GeneralSettingResource::class;
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
@@ -16,8 +16,8 @@ class CreateClient extends CreateRecord
     protected function afterCreate(): void
     {
         Notification::make()
-            ->title('Client Created')
-            ->body('The Client has been successfully added.')
+            ->title('General Setting Created')
+            ->body('The General Setting has been successfully added.')
             ->success()
             ->send();
     }

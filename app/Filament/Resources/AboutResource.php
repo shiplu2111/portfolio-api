@@ -70,11 +70,6 @@ class AboutResource extends Resource
                 ->imageFormat('webp')->directory('about'),
 
 
-                // FileUpload::make('testimonial_image')
-                // ->directory('testimonial_image')
-                // ->imageResizeMode('cover')
-                // ->imageEditor()
-                // ->required(),
 
                 Croppie::make('testimonial_image')
                 ->avatar()
@@ -85,11 +80,6 @@ class AboutResource extends Resource
                 ->imageFormat('webp')
                 ->imageResizeMode('cover'),
 
-                // FileUpload::make('designation_image')
-                // ->directory('designation_image')
-                // ->imageResizeMode('cover')
-                // ->imageEditor()
-                // ->required(),
 
                 Croppie::make('designation_image')
                 ->avatar()
