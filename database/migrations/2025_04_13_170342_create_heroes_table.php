@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('heroes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('name');
-            $table->string('designation');
-            $table->text('description');
-            $table->string('image');
-            $table->string('resume');
+            $table->string('name')->nullable();
+            $table->string('designation')->nullable();
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->string('resume')->nullable();
             $table->timestamps();
         });
     }

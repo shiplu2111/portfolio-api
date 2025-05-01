@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image');
-            $table->string('percentage');
+            $table->string('image')->nullable();
+            $table->string('percentage')->nullable();
             $table->timestamps();
         });
     }

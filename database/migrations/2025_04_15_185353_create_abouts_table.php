@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->string('services');
-            $table->string('image');
-            $table->string('designation');
-            $table->string('designation_image');
-            $table->string('testimonial_image');
-            $table->string('testimonial_name');
+            $table->text('description')->nullable();
+            $table->text('services')->nullable();
+            $table->string('image')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('designation_image')->nullable();
+            $table->string('testimonial_image')->nullable();
+            $table->string('testimonial_name')->nullable();
             $table->timestamps();
         });
     }

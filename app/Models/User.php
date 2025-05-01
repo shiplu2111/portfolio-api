@@ -9,13 +9,17 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Firefly\FilamentBlog\Traits\HasBlog;
 class User extends Authenticatable implements FilamentUser
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasBlog;
     public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this->email, '@shiplujs.com') && $this->hasVerifiedEmail();
+        // return str_ends_with($this->email, '@yourdomain.com');
+        return str_ends_with($this->email, '@shiplujs.com');
     }
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -46,4 +50,9 @@ class User extends Authenticatable implements FilamentUser
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function canComment(): bool
+    {
+        // your conditional logic here
+        return false;
+    }
 }
