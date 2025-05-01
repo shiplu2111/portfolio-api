@@ -6,13 +6,13 @@ This is a portfolio api with laravel and filament php
 Start by cloning the repo
 ## Cloning the repo
 ```bash
-git clone https://github.com/shiplu2111/portfolio-api.git
+git clone https://github.com/shiplu2111/shiplujs-portfolio-api.git
 
 ```
 
 ## Change directory
 ```bash
-cd portfolio-api
+cd shiplujs-portfolio-api
 
 ```
 
