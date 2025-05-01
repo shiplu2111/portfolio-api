@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Faq extends Model
 {
     use HasFactory;
+    protected $fillable = ['title', 'image_one', 'image_two', 'faqs'];
 
     protected $casts = [
         'faqs' => 'array',

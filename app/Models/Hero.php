@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Hero extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'name',
+        'designation',
+        'description',
+        'image',
+        'resume',
+    ];
 }

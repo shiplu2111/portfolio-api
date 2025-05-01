@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ResumeController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\EmailController;
+use App\Http\Controllers\Api\ContactMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +68,8 @@ Route::get('/testimonials', [ProjectController::class, 'testimonials']);
 Route::get('/faq', [SettingController::class, 'faq']);
 Route::get('/general-settings', [SettingController::class, 'index']);
 Route::get('/texts', [SettingController::class, 'texts']);
+
+Route::get('/email', [EmailController::class, 'index']);
+
+
+Route::post('/contact-me', [ContactMessageController::class, 'store']);

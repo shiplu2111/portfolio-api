@@ -47,9 +47,6 @@ class FrontendController extends Controller
         if($data->testimonial_image!==null){
         $data->testimonial_image = asset('storage/' . ltrim($data->testimonial_image, '/'));
         }
-        if($data->testimonial_name!==null){
-        $data->testimonial_name = asset('storage/' . ltrim($data->testimonial_name, '/'));
-        }
         return response()->json([
             'success' => true,
             'message' => 'About me fetched successfully',

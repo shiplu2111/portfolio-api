@@ -21,14 +21,17 @@ use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Filament\Navigation\MenuItem;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 use Firefly\FilamentBlog\Blog;
+use App\Models\GeneralSetting;
 class ShiplujsPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $setting = GeneralSetting::first();
         return $panel
             ->default()
-            ->brandName('Shiplujs')
-            // ->brandLogo(asset('storage/hero/01JRR5BP8CD6F9H7DJV861JWCD.jpg'))
+            //  ->brandName('ShipLuJs')
+            ->brandName($setting->site_name)
+            ->brandLogo(asset('storage/' . ltrim($setting->logo, '/')))
             ->id('shiplujs')
             ->path('shiplujs')
             ->login()

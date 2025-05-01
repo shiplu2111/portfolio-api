@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('favicon')->nullable();
             $table->string('preloader')->nullable();
             $table->string('email')->nullable();
+            $table->string('website_url')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();

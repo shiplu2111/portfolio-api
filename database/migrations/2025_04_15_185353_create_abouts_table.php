@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('services')->nullable();
+            $table->text('services')->nullable();
             $table->string('image')->nullable();
             $table->string('designation')->nullable();
             $table->string('designation_image')->nullable();

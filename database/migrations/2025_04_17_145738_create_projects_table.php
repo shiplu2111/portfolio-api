@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('short_description')->nullable();
             $table->text('description')->nullable();
-            $table->string('related_service')->nullable();
+            $table->text('related_service')->nullable();
             $table->string('image')->nullable(); // main image
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('client')->nullable();

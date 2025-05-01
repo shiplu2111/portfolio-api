@@ -44,6 +44,14 @@ class GeneralSettingResource extends Resource
                 ->placeholder('E.g. me@shiplujs.com')
                 ->required(),
 
+                TextInput::make('website_url')
+                ->label('Website url')
+                ->columnSpan('full')
+                ->placeholder('https://shiplujs.com')
+                ->url()
+                ->suffixIcon('heroicon-o-globe-alt')
+                ->required(),
+
                 Croppie::make('logo')
                 ->label('Logo')
                 ->viewportType('square')
@@ -148,6 +156,8 @@ class GeneralSettingResource extends Resource
 
                         TextInput::make('url')
                         ->label('URL')
+                         ->url()
+                         ->suffixIcon('heroicon-o-globe-alt')
                         ->placeholder('E.g. https://www.facebook.com/shiplujs')
                         ->required(),
                 ])
@@ -157,7 +167,6 @@ class GeneralSettingResource extends Resource
                 ->default([
                     [
                         'id' => (string) Str::uuid(),
-                        'social_link' => '',
                     ],
                 ])
             ]);

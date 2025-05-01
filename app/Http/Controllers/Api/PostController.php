@@ -10,6 +10,8 @@ use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Models\ShareSnippet;
 use Firefly\FilamentBlog\Models\Category;
 use Firefly\FilamentBlog\Models\Tag;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SubscribeMail;
 class PostController extends Controller
 {
 
@@ -112,16 +114,21 @@ class PostController extends Controller
         ], [
             'email.unique' => 'You have already subscribed',
         ]);
-        NewsLetter::create([
-            'email' => $request->email,
-        ]);
+        $emailAddress = $request->email; // your static email address
 
-        return response()->json(
-            [
-                'success' => true,
-                'message' => 'You have successfully subscribed to our news letter',
-            ]
-            );
+        $mailData = [
+            'email' => $emailAddress, // whatever data you want to show inside email
+        ];
+        try {
+            Mail::to($emailAddress)->send(new SubscribeMail($mailData));
+            NewsLetter::create([
+                'email' => $request->email,
+            ]);
+            return response()->json(['message' => 'Thank you for subscribing','success' => true], 200);
+        } catch (\Throwable $th) {
+            throw $th;
+            return response()->json(['message' => 'Something went wrong', 'error' => $th->getMessage()], 500);
+        }
 
     }
 

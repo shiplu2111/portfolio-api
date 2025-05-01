@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Counter extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'text', 'value', 'value_type',
+    ];
 }
