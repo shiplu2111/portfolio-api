@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\ImageColumn;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 class HeroResource extends Resource
 {
     protected static ?string $model = Hero::class;
@@ -33,8 +34,12 @@ class HeroResource extends Resource
                 Forms\Components\Textarea::make('description')
                 ->maxLength(65535)
                 ->columnSpan('full'),
-                FileUpload::make('image')
-                ->directory('hero'),
+
+                Croppie::make('image')
+                ->viewportType('square')
+                ->viewportHeight(410)
+                ->viewportWidth(320)
+                ->imageFormat('webp')->directory('hero'),
                 FileUpload::make('resume')
                 ->acceptedFileTypes(['application/pdf'])
             ]);
